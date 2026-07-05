@@ -42,6 +42,8 @@ export default function RootLayout() {
     { label: "Polaris Card", url: "/polaris/card" },
     { label: "Polaris Layout", url: "/polaris/layout" },
     { label: "Polaris Button", url: "/polaris/button" },
+    { label: "Polaris Form", url: "/polaris/form" },
+
   ];
 
   const navigationMarkup = (
