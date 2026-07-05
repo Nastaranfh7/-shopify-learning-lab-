@@ -6,6 +6,7 @@ import "./index.css";
 
 import PolarisCard from "./polaris/PolarisCard.jsx";
 import PolarisPage from "./polaris/PolarisPage.jsx";
+import PolarisLayout from "./polaris/PolarisLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -16,13 +17,14 @@ const router = createBrowserRouter([
 
       // فقط همین یکی برای polaris
       { path: "polaris", element: <PolarisPage /> },
-
+      
       // کارت Polaris
       { path: "polaris/card", element: <PolarisCard /> },
-
+      {path: '/polaris/layout',element: <PolarisLayout />},
       { path: "api", element: <h2 className="text-xl">API Section</h2> },
       { path: "webhooks", element: <h2 className="text-xl">Webhooks Section</h2> },
       { path: "structure", element: <h2 className="text-xl">App Structure Section</h2> },
+      
     ],
   },
 ]);

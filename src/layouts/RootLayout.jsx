@@ -1,27 +1,99 @@
-import { Outlet, Link } from "react-router-dom";
-import { AppProvider } from "@shopify/polaris";
+// توضیح فارسی برای تو:
+// این نسخهٔ RootLayout شامل Frame، TopBar، Navigation و UserMenu کامل است.
+
+import React from "react";
+import { AppProvider, Frame, TopBar, Navigation } from "@shopify/polaris";
+import { Outlet } from "react-router-dom";
 import "@shopify/polaris/build/esm/styles.css";
 
 export default function RootLayout() {
+
+  // -----------------------------
+  // 🔵 state مخصوص UserMenu
+  // -----------------------------
+  // توضیح فارسی:
+  // این state مشخص می‌کند منوی کاربری باز است یا بسته.
+  const [userMenuActive, setUserMenuActive] = React.useState(false);
+
+  // توضیح فارسی:
+  // این تابع وضعیت منو را تغییر می‌دهد (باز ↔ بسته)
+  const toggleUserMenuActive = () => {
+    setUserMenuActive((active) => !active);
+  };
+
+  // -----------------------------
+  // 🔵 state مخصوص SearchField
+  // -----------------------------
+  const [searchValue, setSearchValue] = React.useState("");
+
+  const handleSearchChange = (value) => {
+    setSearchValue(value);
+  };
+
+  // -----------------------------
+  // 🔵 Navigation Sidebar
+  // -----------------------------
+  const navigationItems = [
+    { label: "Home", url: "/" },
+    { label: "API", url: "/api" },
+    { label: "Webhooks", url: "/webhooks" },
+    { label: "App Structure", url: "/structure" },
+    { label: "Polaris", url: "/polaris" },
+    { label: "Polaris Card", url: "/polaris/card" },
+    { label: "Polaris Layout", url: "/polaris/layout" },
+  ];
+
+  const navigationMarkup = (
+    <Navigation location="/">
+      <Navigation.Section items={navigationItems} />
+    </Navigation>
+  );
+
+  // -----------------------------
+  // 🔵 UserMenu + SearchField
+  // -----------------------------
+  const userMenuMarkup = (
+    <TopBar.UserMenu
+      name="Nas"
+      detail="Developer"
+      actions={[
+        {
+          items: [
+            { content: "Settings" },
+            { content: "Logout" },
+          ],
+        },
+      ]}
+      open={userMenuActive}          // اینجا state وصل می‌شود
+      onToggle={toggleUserMenuActive} // اینجا تابع toggle وصل می‌شود
+    />
+  );
+
+  const searchFieldMarkup = (
+    <TopBar.SearchField
+      value={searchValue}
+      onChange={handleSearchChange}
+      placeholder="Search..."
+    />
+  );
+
+  const topBarMarkup = (
+    <TopBar
+      userMenu={userMenuMarkup}
+      searchField={searchFieldMarkup}
+    />
+  );
+
+  // -----------------------------
+  // 🔵 Frame اصلی
+  // -----------------------------
   return (
     <AppProvider>
-      <div className="min-h-screen bg-gray-100">
-        <header className="bg-white shadow p-4">
-          <nav className="flex gap-6 text-lg">
-            <Link to="/" className="hover:text-blue-600">Home</Link>
-            <Link to="/api" className="hover:text-blue-600">API</Link>
-            <Link to="/webhooks" className="hover:text-blue-600">Webhooks</Link>
-            <Link to="/structure" className="hover:text-blue-600">App Structure</Link>
-
-            <Link to="/polaris" className="hover:text-blue-600">Polaris</Link>
-            <Link to="/polaris/card" className="hover:text-blue-600">Polaris Card</Link>
-          </nav>
-        </header>
-
-        <main className="p-6">
+      <Frame topBar={topBarMarkup} navigation={navigationMarkup}>
+        <div style={{ padding: "2rem" }}>
           <Outlet />
-        </main>
-      </div>
+        </div>
+      </Frame>
     </AppProvider>
   );
 }

@@ -1,40 +1,58 @@
-import { Page, Card, BlockStack, Text, Button } from "@shopify/polaris";
+// توضیح فارسی برای تو:
+// این کامپوننت یک صفحهٔ کامل Polaris است که شامل title، primaryAction و دو تا Card می‌باشد.
+// تمام متن‌هایی که روی صفحه نمایش داده می‌شوند انگلیسی هستند.
+
+import React from 'react';
+import {
+  Page,
+  Card,
+  BlockStack,
+  Text,
+  Button,
+} from '@shopify/polaris';
 
 export default function PolarisPage() {
+  // توضیح فارسی:
+  // این تابع برای دکمهٔ اصلی صفحه است. فعلاً فقط یک alert ساده نمایش می‌دهد.
+  const handlePrimaryAction = () => {
+    alert('Primary action clicked ✨');
+  };
+
   return (
     <Page
-      title="Polaris Demo Page"
+      title="Sample Polaris Page"
       primaryAction={{
-        content: "Primary Action",
-        onAction: () => alert("Primary action clicked!"),
+        content: 'Create New Item',
+        onAction: handlePrimaryAction,
       }}
     >
       <BlockStack gap="400">
         <Card>
-          <BlockStack gap="200">
+          <BlockStack gap="300">
+            {/* توضیح فارسی:
+                این عنوان کارت اول است. روی صفحه انگلیسی نمایش داده می‌شود. */}
             <Text as="h2" variant="headingMd">
-              Welcome to Polaris
+              First Card
             </Text>
 
             <Text as="p" variant="bodyMd">
-              این اولین صفحهٔ Polaris تو هست. از اینجا می‌تونی تمام کامپوننت‌های
-              Polaris رو تست کنی.
+              This is a simple card inside the page to show the basic structure.
             </Text>
 
-            <Button onClick={() => alert("Button clicked!")}>
-              Click me
+            <Button onClick={() => alert('First card button clicked')}>
+              Click Me
             </Button>
           </BlockStack>
         </Card>
 
         <Card>
-          <BlockStack gap="200">
+          <BlockStack gap="300">
             <Text as="h2" variant="headingMd">
               Second Card
             </Text>
 
             <Text as="p" variant="bodyMd">
-              این یک کارت دومه برای اینکه ببینی چطور چند کارت کنار هم قرار می‌گیرن.
+              This card could be used for listing orders or products.
             </Text>
           </BlockStack>
         </Card>
