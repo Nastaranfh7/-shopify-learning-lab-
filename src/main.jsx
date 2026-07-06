@@ -10,6 +10,7 @@ import PolarisLayout from "./polaris/PolarisLayout.jsx";
 import PolarisButton from "./polaris/PolarisButton.jsx";
 import PolarisForm from "./polaris/PolarisForm.jsx";
 import PolarisIndexTable from "./polaris/PolarisIndexTable.jsx";
+import PolarisCRUD from "./polaris/PolarisCRUD.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,8 @@ const router = createBrowserRouter([
       {path: "/polaris/button",element: <PolarisButton />},
       {path: "/polaris/form",element: <PolarisForm/>},
       { path: "/polaris/table", element: <PolarisIndexTable /> },
+      {path: "/polaris/crud",element: <PolarisCRUD />},
+
 
       { path: "api", element: <h2 className="text-xl">API Section</h2> },
       { path: "webhooks", element: <h2 className="text-xl">Webhooks Section</h2> },

@@ -44,6 +44,8 @@ export default function RootLayout() {
     { label: "Polaris Button", url: "/polaris/button" },
     { label: "Polaris Form", url: "/polaris/form" },
     { label: "Polaris IndexTable", url: "/polaris/table" },
+    {label: "CRUD Dashboard",url: "/polaris/crud"},
+
 
 
   ];
