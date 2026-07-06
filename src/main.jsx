@@ -11,6 +11,13 @@ import PolarisButton from "./polaris/PolarisButton.jsx";
 import PolarisForm from "./polaris/PolarisForm.jsx";
 import PolarisIndexTable from "./polaris/PolarisIndexTable.jsx";
 import PolarisCRUD from "./polaris/PolarisCRUD.jsx";
+import PolarisCRUD from "./polaris/PolarisCRUD";
+
+import CreateProduct from "./polaris/CreateProduct";
+
+import EditProduct from "./polaris/EditProduct";
+
+import ProductsList from "./polaris/ProductsList";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +36,38 @@ const router = createBrowserRouter([
       {path: "/polaris/form",element: <PolarisForm/>},
       { path: "/polaris/table", element: <PolarisIndexTable /> },
       {path: "/polaris/crud",element: <PolarisCRUD />},
+      
+{
+
+  path: "/crud",
+
+  element: <PolarisCRUD />,
+
+},
+
+{
+
+  path: "/crud/create",
+
+  element: <CreateProduct onCreate={handleCreate} />,
+
+},
+
+{
+
+  path: "/crud/list",
+
+  element: <ProductsList products={products} onDelete={handleDelete} />,
+
+},
+
+{
+
+  path: "/crud/edit/:id",
+
+  element: <EditProduct product={selectedProduct} onUpdate={handleUpdate} />,
+
+},
 
 
       { path: "api", element: <h2 className="text-xl">API Section</h2> },
