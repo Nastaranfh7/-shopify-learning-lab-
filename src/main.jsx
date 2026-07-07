@@ -11,73 +11,37 @@ import PolarisButton from "./polaris/PolarisButton.jsx";
 import PolarisForm from "./polaris/PolarisForm.jsx";
 import PolarisIndexTable from "./polaris/PolarisIndexTable.jsx";
 import PolarisCRUD from "./polaris/PolarisCRUD.jsx";
-import PolarisCRUD from "./polaris/PolarisCRUD";
-
-import CreateProduct from "./polaris/CreateProduct";
-
-import EditProduct from "./polaris/EditProduct";
-
-import ProductsList from "./polaris/ProductsList";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
-      { index: true, element: <h1 className="text-3xl">Welcome to Shopify Learning Lab</h1> },
+      {
+        index: true,
+        element: <h1 className="text-3xl">Welcome to Shopify Learning Lab</h1>,
+      },
 
-      // فقط همین یکی برای polaris
+      // Polaris demos
       { path: "polaris", element: <PolarisPage /> },
-      
-      // کارت Polaris
       { path: "polaris/card", element: <PolarisCard /> },
-      {path: '/polaris/layout',element: <PolarisLayout />},
-      {path: "/polaris/button",element: <PolarisButton />},
-      {path: "/polaris/form",element: <PolarisForm/>},
-      { path: "/polaris/table", element: <PolarisIndexTable /> },
-      {path: "/polaris/crud",element: <PolarisCRUD />},
-      
-{
+      { path: "polaris/layout", element: <PolarisLayout /> },
+      { path: "polaris/button", element: <PolarisButton /> },
+      { path: "polaris/form", element: <PolarisForm /> },
+      { path: "polaris/table", element: <PolarisIndexTable /> },
 
-  path: "/crud",
-
-  element: <PolarisCRUD />,
-
-},
-
-{
-
-  path: "/crud/create",
-
-  element: <CreateProduct onCreate={handleCreate} />,
-
-},
-
-{
-
-  path: "/crud/list",
-
-  element: <ProductsList products={products} onDelete={handleDelete} />,
-
-},
-
-{
-
-  path: "/crud/edit/:id",
-
-  element: <EditProduct product={selectedProduct} onUpdate={handleUpdate} />,
-
-},
+      // CRUD (تمام صفحات CRUD داخل PolarisCRUD مدیریت می‌شوند)
+      { path: "/crud/*", element: <PolarisCRUD /> },
 
 
+      // سایر بخش‌ها
       { path: "api", element: <h2 className="text-xl">API Section</h2> },
       { path: "webhooks", element: <h2 className="text-xl">Webhooks Section</h2> },
       { path: "structure", element: <h2 className="text-xl">App Structure Section</h2> },
-      
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <RouterProvider router={router} />,
 );

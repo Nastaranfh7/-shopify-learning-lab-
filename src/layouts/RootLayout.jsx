@@ -7,7 +7,6 @@ import { Outlet } from "react-router-dom";
 import "@shopify/polaris/build/esm/styles.css";
 
 export default function RootLayout() {
-
   // -----------------------------
   // 🔵 state مخصوص UserMenu
   // -----------------------------
@@ -34,34 +33,26 @@ export default function RootLayout() {
   // 🔵 Navigation Sidebar
   // -----------------------------
   const navigationItems = [
-    { label: "Home", url: "/" },
-    { label: "API", url: "/api" },
-    { label: "Webhooks", url: "/webhooks" },
-    { label: "App Structure", url: "/structure" },
-    { label: "Polaris", url: "/polaris" },
-    { label: "Polaris Card", url: "/polaris/card" },
-    { label: "Polaris Layout", url: "/polaris/layout" },
-    { label: "Polaris Button", url: "/polaris/button" },
-    { label: "Polaris Form", url: "/polaris/form" },
-    { label: "Polaris IndexTable", url: "/polaris/table" },
-    {label: "CRUD Dashboard",url: "/polaris/crud"},
-    {
-  url: "/crud",
-  label: "CRUD Dashboard",
-},
-{
-  url: "/crud/list",
-  label: "Products List",
-},
-{
-  url: "/crud/create",
-  label: "Create Product",
-},
+  { label: "Home", url: "/" },
+  { label: "API", url: "/api" },
+  { label: "Webhooks", url: "/webhooks" },
+  { label: "App Structure", url: "/structure" },
+  { label: "Polaris", url: "/polaris" },
+  { label: "Polaris Card", url: "/polaris/card" },
+  { label: "Polaris Layout", url: "/polaris/layout" },
+  { label: "Polaris Button", url: "/polaris/button" },
+  { label: "Polaris Form", url: "/polaris/form" },
+  { label: "Polaris IndexTable", url: "/polaris/table" },
+
+  // این یکی را نگه می‌داریم
 
 
+{ label: "CRUD Dashboard", url: "/crud" },
 
+  { label: "Products List", url: "/crud/list" },
+  { label: "Create Product", url: "/crud/create" },
+];
 
-  ];
 
   const navigationMarkup = (
     <Navigation location="/">
@@ -78,13 +69,10 @@ export default function RootLayout() {
       detail="Developer"
       actions={[
         {
-          items: [
-            { content: "Settings" },
-            { content: "Logout" },
-          ],
+          items: [{ content: "Settings" }, { content: "Logout" }],
         },
       ]}
-      open={userMenuActive}          // اینجا state وصل می‌شود
+      open={userMenuActive} // اینجا state وصل می‌شود
       onToggle={toggleUserMenuActive} // اینجا تابع toggle وصل می‌شود
     />
   );
@@ -98,10 +86,7 @@ export default function RootLayout() {
   );
 
   const topBarMarkup = (
-    <TopBar
-      userMenu={userMenuMarkup}
-      searchField={searchFieldMarkup}
-    />
+    <TopBar userMenu={userMenuMarkup} searchField={searchFieldMarkup} />
   );
 
   // -----------------------------
