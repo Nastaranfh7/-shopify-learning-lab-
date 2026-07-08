@@ -6,27 +6,36 @@ import CreateProduct from "./CreateProduct.jsx";
 import EditProduct from "./EditProduct.jsx";
 import ProductsList from "./ProductsList.jsx";
 
+import {
+  getProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "../api/products.js";
+
 export default function PolarisCRUD() {
   const navigate = useNavigate();
 
-  const [products, setProducts] = useState([
-    { id: "1", name: "Digital Course", price: "$49", status: "Active" },
-    { id: "2", name: "Premium Theme", price: "$199", status: "Draft" },
-  ]);
+const [products, setProducts] = useState(getProducts());
+;
 
-  const handleCreate = (newProduct) => {
-    setProducts([...products, newProduct]);
-    navigate("/crud/list");
-  };
+const handleCreate = (newProduct) => {
+  createProduct(newProduct);          // به API بگو محصول جدید اضافه کن
+  setProducts(getProducts());         // دوباره لیست را از API بگیر
+  navigate("/crud/list");
+};
 
-  const handleUpdate = (updatedProduct) => {
-    setProducts(products.map(p => p.id === updatedProduct.id ? updatedProduct : p));
-    navigate("/crud/list");
-  };
+const handleUpdate = (updatedProduct) => {
+  updateProduct(updatedProduct);      // به API بگو این محصول را آپدیت کن
+  setProducts(getProducts());         // لیست جدید را از API بگیر
+  navigate("/crud/list");
+};
 
-  const handleDelete = (id) => {
-    setProducts(products.filter(p => p.id !== id));
-  };
+
+const handleDelete = (id) => {
+  deleteProduct(id);                  // به API بگو این محصول را حذف کن
+  setProducts(getProducts());         // لیست جدید را از API بگیر
+};
 
   return (
     <Routes>
